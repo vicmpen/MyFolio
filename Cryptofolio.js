@@ -99,15 +99,15 @@
         });
 
     });
-    
+
     setTimeout(function() {
         var difference = currentTotal-lastTotal
         var upOrDown = difference > 0 ? 'up' : 'down'
         console.log('====================================\n');
         console.log('currentTotal EURO ====>',parseInt(currentTotal) , `${upOrDown} ${difference} euro since ${ msToTime((Date.parse(new Date()) - Date.parse(lastDate) ))} hours ago` )
         console.log('\n====================================');
-        console.log('currentTotal ETH ====>', parseInt(currentTotal/ethPrice))
-        fs.appendFileSync(historyFile,parseFloat(currentTotal).toFixed(2)+ `@${new Date()}`+'\n')
+        console.log('currentTotal ETH ====>', parseFloat(currentTotal/ethPrice).toFixed(2))
+        fs.appendFileSync(historyFile,parseInt(currentTotal)+ `@${new Date()}`+'\n')
     }, 1500);
     
     function msToTime(duration) {
