@@ -4,8 +4,8 @@
 
     var http = require('https')
     var fs = require('fs')
-    var path = '/Users/VictorBenetatos/Desktop/Assets'
-    var historyFile = '/Users/VictorBenetatos/Desktop/Assets/history.txt'
+    var path = './'
+    var historyFile = './history.txt'
     var file;
     var lastTotal
     var lastDate
