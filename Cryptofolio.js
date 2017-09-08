@@ -45,6 +45,7 @@
     eth = 'https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=EUR',
     snt = 'https://api.coinmarketcap.com/v1/ticker/status/?convert=EUR',
     cdt = 'https://api.coinmarketcap.com/v1/ticker/coindash/?convert=EUR'
+    zrx = 'https://api.coinmarketcap.com/v1/ticker//0x/?convert=EUR'
 
     currentTotal = 0
 
@@ -55,9 +56,9 @@
         res.on('data', function(chunk){
             var obj = JSON.parse(chunk)[0]
             var price = obj.price_eur
-            currentTotal = currentTotal + price * 13898
+            currentTotal = currentTotal + price * 16800
             console.log('\n');
-            console.log('DNT =========>',parseInt(price * 13898));
+            console.log('DNT @ ' +obj.price_usd +' =========>',parseInt(price * 16800).toString()+' euro');
             console.log('\n')
         });
 
@@ -69,7 +70,7 @@
             var price = obj.price_eur
             currentTotal = currentTotal + price * 12726
             console.log('\n');
-            console.log('SNT =========>',parseInt(price * 12726));
+            console.log('SNT @ ' +obj.price_usd +'=========>',parseInt(price * 12726).toString()+' euro');
             console.log('\n')
         });
 
@@ -80,21 +81,21 @@
             var obj = JSON.parse(chunk)[0]
             var price = obj.price_eur
             ethPrice = obj.price_eur
-            currentTotal = currentTotal + price * 9.327
+            currentTotal = currentTotal + price * 6
             console.log('\n');
-            console.log('ETH =========>',parseInt(price * 9.327));
+            console.log('ETH @ ' +obj.price_usd +'=========>',parseInt(price * 6).toString()+' euro');
             console.log('\n')
         });
 
     });
-    http.get(cdt, function(res){
+    http.get(zrx, function(res){
         res.setEncoding('utf8');
         res.on('data', function(chunk){
             var obj = JSON.parse(chunk)[0]
             var price = obj.price_eur
-            currentTotal = currentTotal + price * 2575
+            currentTotal = currentTotal + price * 800
             console.log('\n');
-            console.log('CDT =========>',parseInt(price * 2575));
+            console.log('ZRX @ ' +obj.price_usd +' =========>',parseInt(price * 800).toString()+' euro');
             console.log('\n')
         });
 
@@ -108,7 +109,7 @@
         console.log('\n====================================');
         console.log('currentTotal ETH ====>', parseFloat(currentTotal/ethPrice).toFixed(2))
         fs.appendFileSync(historyFile,parseInt(currentTotal)+ `@${new Date()}`+'\n')
-    }, 1500);
+    }, 2000);
     
     function msToTime(duration) {
         var milliseconds = parseInt((duration%1000)/100)
