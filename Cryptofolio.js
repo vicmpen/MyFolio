@@ -2,10 +2,11 @@
 //'use strict'
 (function() {
 
-    var http = require('https')
-    var fs = require('fs')
-    var path = './'
-    var historyFile = './history.txt'
+    const http = require('https')
+    const fs = require('fs')
+    const path = '/Users/VictorBenetatos/Desktop/Assets/'
+    const historyFile = '/Users/VictorBenetatos/Desktop/Assets/history.txt'
+    const hourChange = 'since an hour ago'
     var file;
     var lastTotal
     var lastDate
@@ -40,17 +41,42 @@
         })
     }
 
-
+    rvt = 'https://api.coinmarketcap.com/v1/ticker/rivetz/?convert=EUR'
     dnt = 'https://api.coinmarketcap.com/v1/ticker/district0x/?convert=EUR'
     eth = 'https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=EUR',
     snt = 'https://api.coinmarketcap.com/v1/ticker/status/?convert=EUR',
     cdt = 'https://api.coinmarketcap.com/v1/ticker/coindash/?convert=EUR'
+    omg = 'https://api.coinmarketcap.com/v1/ticker/omisego/?convert=EUR'
     zrx = 'https://api.coinmarketcap.com/v1/ticker//0x/?convert=EUR'
 
     currentTotal = 0
 
 
+http.get(omg, function(res){
+        res.setEncoding('utf8');
+        res.on('data', function(chunk){
+            var obj = JSON.parse(chunk)[0]
+            var price = obj.price_eur
+            currentTotal = currentTotal + price * 27 
+            console.log('\n');
+            console.log('OMG @ ' +obj.price_usd +` (${obj.percent_change_1h}% ${hourChange})         =========>`,parseInt(price * 27).toString()+' euro');
+            console.log('\n')
+        });
 
+})
+
+http.get(rvt, function(res){
+    res.setEncoding('utf8');
+    res.on('data', function(chunk){
+        var obj = JSON.parse(chunk)[0]
+        var price = obj.price_eur
+        currentTotal = currentTotal + price * 400 
+        console.log('\n');
+        console.log('RVT @ ' +obj.price_usd +` (${obj.percent_change_1h}% ${hourChange})            =========>`,parseInt(price * 400).toString()+' euro');
+        console.log('\n')
+    });
+
+})
     http.get(dnt, function(res){
         res.setEncoding('utf8');
         res.on('data', function(chunk){
@@ -58,7 +84,7 @@
             var price = obj.price_eur
             currentTotal = currentTotal + price * 16800
             console.log('\n');
-            console.log('DNT @ ' +obj.price_usd +' =========>',parseInt(price * 16800).toString()+' euro');
+            console.log('DNT @ ' +obj.price_usd +` (${obj.percent_change_1h}% ${hourChange})        =========>`,parseInt(price * 16800).toString()+' euro');
             console.log('\n')
         });
 
@@ -70,7 +96,7 @@
             var price = obj.price_eur
             currentTotal = currentTotal + price * 12726
             console.log('\n');
-            console.log('SNT @ ' +obj.price_usd +'=========>',parseInt(price * 12726).toString()+' euro');
+            console.log('SNT @ ' +obj.price_usd +` (${obj.percent_change_1h}% ${hourChange})        =========>`,parseInt(price * 12726).toString()+' euro');
             console.log('\n')
         });
 
@@ -81,9 +107,9 @@
             var obj = JSON.parse(chunk)[0]
             var price = obj.price_eur
             ethPrice = obj.price_eur
-            currentTotal = currentTotal + price * 6
+            currentTotal = currentTotal + price * 5
             console.log('\n');
-            console.log('ETH @ ' +obj.price_usd +'=========>',parseInt(price * 6).toString()+' euro');
+            console.log('ETH @ ' +obj.price_usd +` (${obj.percent_change_1h}% ${hourChange})        =========>`,parseInt(price * 5).toString()+' euro');
             console.log('\n')
         });
 
@@ -95,7 +121,7 @@
             var price = obj.price_eur
             currentTotal = currentTotal + price * 800
             console.log('\n');
-            console.log('ZRX @ ' +obj.price_usd +' =========>',parseInt(price * 800).toString()+' euro');
+            console.log('ZRX @ ' +obj.price_usd +` (${obj.percent_change_1h}% ${hourChange})        =========>`,parseInt(price * 800).toString()+' euro');
             console.log('\n')
         });
 
@@ -109,7 +135,7 @@
         console.log('\n====================================');
         console.log('currentTotal ETH ====>', parseFloat(currentTotal/ethPrice).toFixed(2))
         fs.appendFileSync(historyFile,parseInt(currentTotal)+ `@${new Date()}`+'\n')
-    }, 2000);
+    }, 2500);
     
     function msToTime(duration) {
         var milliseconds = parseInt((duration%1000)/100)
