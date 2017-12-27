@@ -1,0 +1,30 @@
+{
+  "name": "cryptofolio",
+  "version": "1.0.0",
+  "description": "A Simple Node JS util to sum up your crypto folio",
+  "main": "Cryptofolio.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vicmpen/MyFolio.git"
+  },
+  "keywords": [
+    "cryptocurrency",
+    "nodejs",
+    "node",
+    "javascript"
+  ],
+  "author": "Victor Benetatos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vicmpen/MyFolio/issues"
+  },
+  "homepage": "https://github.com/vicmpen/MyFolio#readme",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "commander": "^2.12.2",
+    "ora": "^1.3.0"
+  }
+}
