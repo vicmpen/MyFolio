@@ -92,7 +92,7 @@
 
     const PrintIt = (coinInfo) => {
       // console.log('=======!!!!===================');
-      // console.log(coinInfo);
+      // console.log(ethPrice);
       // console.log('====================================');
       let sum = 0
       if (userCoins && userCoins.length > 0) {
@@ -116,7 +116,7 @@
         console.log('====================================\n');
         console.log('currentTotal EURO ====>',parseInt(sum) , `${upOrDown} ${difference} euro since ${ msToTime((Date.parse(new Date()) - Date.parse(lastDate) ))} hours ago` )
         console.log('\n====================================');
-        console.log('currentTotal ETH ====>', parseFloat(currentTotal/ethPrice).toFixed(2))
+        console.log('currentTotal ETH ====>', parseFloat(sum/ethPrice).toFixed(2))
         fs.appendFileSync(historyFile,sum.toFixed(2)+ `@${new Date()}`+'\n')
       } else {
       }
@@ -124,6 +124,7 @@
 
     getAllCoins().then(response => {
       let userInfo = undefined
+      ethPrice  = parseFloat(response.data.filter(currency => currency.symbol === 'ETH')[0].price_eur).toFixed(2)
       if(program.file) {
         try {
           userInfo = readInfoFile(program.file)
