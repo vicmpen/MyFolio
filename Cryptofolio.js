@@ -9,7 +9,7 @@
 
     const baseURL = 'https://api.coinmarketcap.com/v1/ticker&convert=EUR'
     const path = '/Users/VictorBenetatos/Desktop/Assets/'
-    const historyFile = '/Users/VictorBenetatos/Desktop/Assets/history.txt'
+    const historyFile = `${process.cwd()}/history.txt`
     const hourChange = 'since an hour ago'
     let userCoins
     let availableCurrencies = {}
