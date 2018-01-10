@@ -1,2 +1,2 @@
-eth zrx dnt snt rvt ada
-5.6 970 16585 12726 400 280
+eth zrx dnt rvt ada
+11.95 970 16585 400 280
