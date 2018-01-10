@@ -82,13 +82,24 @@
         }
   }
 
+  const checkFileParameter = (arg) => {
+    if(!arg) {
+      console.log('No file param provided, ')
+      return './info.txt'
+    }
+    return arg
+  }
+
   const newLine = () => console.log('\n')
 
     program.version('0.0.1')
-    //.option('-h, --history', 'Convert to your fiat currency')
-    .option('-f, --file [file]', 'Provide a text file with two rows. The first has space separated CMC coin Symbols (e.g. eth) and the second the corresponding amount you own', null)
+    .option('-f, --file [file]', 'Provide a text file with two rows. The first has space separated CMC coin Symbols (e.g. eth) and the second the corresponding amount you own', '')
     .parse(process.argv)
-    // console.log(program)
+    if (!program.file) {
+      program.file = './info.txt'
+      console.log('No Input File was give, defaulting to ./info.txt')
+    }
+    console.log(program.file)
 
     const PrintIt = (coinInfo) => {
       // console.log('=======!!!!===================');
@@ -147,6 +158,11 @@
         } catch(err) {
           console.log('errrorrrr', err)
         }
+      } else {
+        newLine()
+        console.log(`
+            No file was provided, defaulting to ./file.txt
+          `)
       }
     })
 
