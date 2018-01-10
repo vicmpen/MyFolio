@@ -60,7 +60,7 @@
    const readInfoFile = (path) => {
       if(!fs.existsSync(path)) {
         console.log('====================================');
-        console.log('Input file does not exists');
+        console.log(`Input file ${path} does not exists`);
         console.log('====================================');
         process.exit()
       } else {
