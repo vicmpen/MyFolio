@@ -66,8 +66,8 @@
       } else {
           let data = fs.readFileSync(path,'utf8')
           let contents = data.split('\n')
-          let coins = contents[0].split(' ')
-          let coinAmounts = contents[1].split(' ')
+          let coins = contents[0].split(',')
+          let coinAmounts = contents[1].split(',')
           if(coins.length !== coinAmounts.length) {
             console.log('====================================');
             console.log('Missmatching info, Make sure the number of coins and amounts is the same, exiting');
@@ -85,7 +85,7 @@
   const checkFileParameter = (arg) => {
     if(!arg) {
       console.log('No file param provided, ')
-      return './info.txt'
+      return './crypto.txt'
     }
     return arg
   }
@@ -93,7 +93,7 @@
   const newLine = () => console.log('\n')
 
     program.version('0.0.1')
-    .option('-f, --file [file]', 'Provide a text file with two rows. The first has space separated CMC coin Symbols (e.g. eth) and the second the corresponding amount you own', '')
+    .option('-f, --file [file]', 'Provide a text file with two rows. The first has comma separated CMC coin Symbols (e.g. eth) and the second the corresponding amount you own', '')
     .parse(process.argv)
     if (!program.file) {
       program.file = './info.txt'
