@@ -60,7 +60,7 @@
    const readInfoFile = (path) => {
       if(!fs.existsSync(path)) {
         console.log('====================================');
-        console.log('file does not exists');
+        console.log('Input file does not exists');
         console.log('====================================');
         process.exit()
       } else {
@@ -122,6 +122,7 @@
       }
     }
 
+    const spinner = ora('Loading Coins And Tokens from CMC...').start()   
     getAllCoins().then(response => {
       let userInfo = undefined
       ethPrice  = parseFloat(response.data.filter(currency => currency.symbol === 'ETH')[0].price_eur).toFixed(2)
@@ -141,6 +142,7 @@
             // console.log('====================================');
             // console.log('userCoins:', userCoins);
             // console.log('====================================');
+            spinner.stop()            
             PrintIt(userInfo)          
         } catch(err) {
           console.log('errrorrrr', err)
