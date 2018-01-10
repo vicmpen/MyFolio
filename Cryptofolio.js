@@ -158,11 +158,12 @@
       console.log('No Input File was give, defaulting to ./crypto.txt')
       let relativePath = program.rawArgs[1].split('/Cryptofolio.js')[0]
       historyFile = relativePath+historyFile
-      checkForFilesExistence(historyFile)
+      checkForFilesExistence(relativePath+'/crypto.txt')
     }
 
 
-    const spinner = ora('Loading Coins And Tokens from CMC...').start()   
+    const spinner = ora('Loading Coins And Tokens from CMC...').start()
+    newLine()   
     getAllCoins().then(response => {
       let userInfo = undefined
       ethPrice  = parseFloat(response.data.filter(currency => currency.symbol === 'ETH')[0].price_eur).toFixed(2)
