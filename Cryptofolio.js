@@ -102,6 +102,16 @@
     return p
   }
 
+
+  const checkForFilesExistence = path => {
+    if(!fs.existsSync(path)) {
+      console.log('====================================');
+      console.log(`Input file ${path} does not exists`);
+      console.log('====================================');
+      process.exit()
+    }
+  }
+
   const readInfoFile = (path) => {
     if(!fs.existsSync(path)) {
       console.log('====================================');
@@ -148,7 +158,9 @@
       console.log('No Input File was give, defaulting to ./crypto.txt')
       let relativePath = program.rawArgs[1].split('/Cryptofolio.js')[0]
       historyFile = relativePath+historyFile
+      checkForFilesExistence(historyFile)
     }
+
 
     const spinner = ora('Loading Coins And Tokens from CMC...').start()   
     getAllCoins().then(response => {
