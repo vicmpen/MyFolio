@@ -210,7 +210,7 @@
             lastTotal = 0
             lastDate = new Date()
           } else {
-            latestEntry = priceHistory[priceHistory.length-1].split('@')
+            latestEntry = priceHistory[priceHistory.length-2].split('@')
             lastTotal = latestEntry[0]
             lastDate = new Date(latestEntry[1])
           }
