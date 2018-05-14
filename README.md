@@ -1,6 +1,6 @@
 # MyFolio
 
-Before running, make sure you type 'npm install' in the project's root directory
+Before running, make sure you type *npm install* in the project's root directory
 
 A small Javascript script, that calculates your cryptocurrency holdings worth
 
@@ -9,7 +9,7 @@ and the second has the corresponding amount of coins/tokens. The end result shou
 
 /* crypto.txt  */
 
-eth,btc,xpr
+eth,btc,xpr<br>
 10,15,1000
 
 /* crypto.txt */
